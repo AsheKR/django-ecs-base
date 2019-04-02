@@ -4,10 +4,26 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest = "*"
+pytest-sugar = "*"
+tox = "*"
+flake8 = "*"
+coverage = "*"
+black = "==19.3b0"
+pylint-django = "*"
+factory-boy = "*"
+pytest-django = "*"
+django-extensions = "*"
+django-debug-toolbar = "*"
+pytest-cov = "*"
 
 [packages]
 django = "*"
 django-environ = "*"
+argon2-cffi = "*"
+sentry-sdk = "==0.7.9"
+django-anymail = "*"
+pytest-sugar = "*"
 
 [requires]
 python_version = "3.6"
