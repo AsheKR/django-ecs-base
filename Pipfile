@@ -16,6 +16,8 @@ pytest-django = "*"
 django-extensions = "*"
 django-debug-toolbar = "*"
 pytest-cov = "*"
+ipython = "*"
+pytest-pythonpath = "*"
 
 [packages]
 django = "*"
