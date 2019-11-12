@@ -18,6 +18,7 @@ django-debug-toolbar = "*"
 pytest-cov = "*"
 ipython = "*"
 pytest-pythonpath = "*"
+isort = "*"
 
 [packages]
 django = "*"
