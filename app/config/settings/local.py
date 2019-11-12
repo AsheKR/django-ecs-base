@@ -1,5 +1,16 @@
 from .base import *  # noqa
-from .base import env
+from .base import env, APP_DIR
+
+
+# ENVIRON
+# ------------------------------------------------------------------------------
+ROOT_DIR = APP_DIR - 1
+
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
+if not READ_DOT_ENV_FILE:
+    # OS environment variables take precedence over variables from .env
+    env.read_env(str(APP_DIR.path(".env", ".env_local")))
+
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -9,6 +20,11 @@ DEBUG = True
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
+
+
+# DATABASES
+# ------------------------------------------------------------------------------
+DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "db.sqlite3"}}
 
 
 # CACHES
@@ -21,6 +37,12 @@ CACHES = {
     }
 }
 
+# Authentication
+AUTHENTICATION_BACKENDS = [
+    "utils.backend.admin_backend.SettingsBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+
 
 # EMAIL
 # ------------------------------------------------------------------------------
@@ -32,6 +54,21 @@ EMAIL_BACKEND = env(
 EMAIL_HOST = "localhost"
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
 EMAIL_PORT = 1025
+
+
+# ADMIN
+# ------------------------------------------------------------------------------
+# Django Admin URL.
+ADMIN_URL = "admin/"
+# https://docs.djangoproject.com/en/dev/ref/settings/#admins
+ADMINS = [x.split(":") for x in env.list("DJANGO_ADMINS")]
+# https://docs.djangoproject.com/en/dev/ref/settings/#managers
+MANAGERS = ADMINS
+# https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#writing-an-authentication-backend
+ADMIN_LOGIN = "admin"
+ADMIN_PASSWORD = (
+    "argon2$argon2i$v=19$m=512,t=2,p=2$Q2VtSG9DSmJ1WWtH$vIub4JXDuMVXWM+Tg6161A"
+)
 
 
 # django-debug-toolbar
