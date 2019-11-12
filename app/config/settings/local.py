@@ -1,6 +1,5 @@
 from .base import *  # noqa
-from .base import env, APP_DIR
-
+from .base import APP_DIR, env
 
 # ENVIRON
 # ------------------------------------------------------------------------------
