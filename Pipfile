@@ -19,14 +19,15 @@ pytest-cov = "*"
 ipython = "*"
 pytest-pythonpath = "*"
 isort = "*"
+django-aws-secrets-manager = "*"
 
 [packages]
 django = "*"
-django-environ = "*"
 argon2-cffi = "*"
 sentry-sdk = "==0.7.9"
 django-anymail = "*"
 pytest-sugar = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.6"
