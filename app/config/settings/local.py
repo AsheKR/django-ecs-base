@@ -1,22 +1,18 @@
+from aws_secrets import SECRETS
+
 from .base import *  # noqa
-from .base import APP_DIR, env
 
 # ENVIRON
 # ------------------------------------------------------------------------------
-ROOT_DIR = APP_DIR - 1
-
-READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
-if not READ_DOT_ENV_FILE:
-    # OS environment variables take precedence over variables from .env
-    env.read_env(str(APP_DIR.path(".env", ".env_local")))
-
+# https://github.com/LeeHanYeong/django-aws-secrets-manager
+AWS_SECRETS_MANAGER_SECRETS_SECTION = 'django-base:dev'
 
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#debug
 DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = env("DJANGO_SECRET_KEY")
+SECRET_KEY = SECRETS["DJANGO_SECRET_KEY"]
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 
@@ -46,9 +42,7 @@ AUTHENTICATION_BACKENDS = [
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend"
-)
+EMAIL_BACKEND = SECRETS.get("DJANGO_EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
 EMAIL_HOST = "localhost"
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port
@@ -60,7 +54,7 @@ EMAIL_PORT = 1025
 # Django Admin URL.
 ADMIN_URL = "admin/"
 # https://docs.djangoproject.com/en/dev/ref/settings/#admins
-ADMINS = [x.split(":") for x in env.list("DJANGO_ADMINS")]
+ADMINS = SECRETS.get("DJANGO_ADMINS", [])
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 # https://docs.djangoproject.com/en/2.2/topics/auth/customizing/#writing-an-authentication-backend

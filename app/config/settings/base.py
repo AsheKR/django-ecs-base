@@ -6,20 +6,20 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+import os
 
-import environ
+# Directory
+APP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # ENVIRON
 # ------------------------------------------------------------------------------
-APP_DIR = environ.Path(__file__) - 3
-
-env = environ.Env()
-
+# https://github.com/LeeHanYeong/django-aws-secrets-manager
+AWS_SECRETS_MANAGER_SECRETS_NAME = 'django-base'
+AWS_SECRETS_MANAGER_PROFILE = 'django-base-secret-manager'
+AWS_SECRETS_MANAGER_REGION_NAME = 'ap-northeast-2'
 
 # GENERAL
 # ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#debug
-DEBUG = env.bool("DJANGO_DEBUG", False)
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 TIME_ZONE = "Asia/Seoul"
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
@@ -140,11 +140,11 @@ X_FRAME_OPTIONS = "DENY"
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(APP_DIR("staticfiles"))
+STATIC_ROOT = os.path.join(APP_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APP_DIR.path("static"))]
+STATICFILES_DIRS = [os.path.join(APP_DIR, "static")]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
@@ -155,14 +155,6 @@ STATICFILES_FINDERS = [
 # MEDIA
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-root
-MEDIA_ROOT = str(APP_DIR.path("media"))
+MEDIA_ROOT = os.path.join(APP_DIR, "media")
 # https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
-
-
-# EMAIL
-# ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend"
-)
