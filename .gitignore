@@ -1,7 +1,3 @@
-### Django Environ ###
-app/.env
-
-
 # Created by https://www.gitignore.io/api/git,linux,macos,django,python,virtualenv,pycharm+all
 # Edit at https://www.gitignore.io/?templates=git,linux,macos,django,python,virtualenv,pycharm+all
 
