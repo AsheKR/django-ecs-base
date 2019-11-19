@@ -1,4 +1,4 @@
-from aws_secrets import SECRETS
+from django_secrets import SECRETS
 
 from .base import *  # noqa
 
