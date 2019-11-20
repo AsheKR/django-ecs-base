@@ -28,6 +28,8 @@ django-anymail = "*"
 pytest-sugar = "*"
 boto3 = "*"
 django-secrets-manager = "*"
+django-storages = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.6"
