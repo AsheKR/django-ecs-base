@@ -48,7 +48,7 @@ Django APP 을 실행하는데 필요한 앱과 설정을 둔 폴더이다.
 
 #### 1-2. S3
 
-#### 1-3. Secrets-Manager
+#### 1-3. Secrets Manager
 
 아래 내용을 모두 채우고 `일반 텍스트`로 붙여넣어 사용한다.
 
@@ -167,13 +167,16 @@ export DJANGO_SETTINGS_MODULE=config.settings.production
 
 ### 4. Docker
 
-Docker build 및 Push 후 아래 내용을 작성한다.
+Dockerfile`, `nginx/Dockerfile` 두 파일을 build 및 Push 후 아래 내용을 작성한다.
 
 #### 4-1. Docker-compose.yml
 
 ```yaml
 services:
   ...
+  nginx:
+    ...
+    image: <niginx/Dockerfile의 본인이 사용할 DockerImage의 이름을 적는다.>
   web:
     ...
     image: <본인이 사용할 DockerImage의 이름을 적는다.>
@@ -227,3 +230,41 @@ docker-compose.prod.yml 에 aws logging 설정을 붙여서 실행해줄 수 있
 ```shell script
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
 ```
+
+## 배포
+
+### ECS CLI 다루기 위한 설정
+
+[링크](https://github.com/AsheKR/Django-Docker-Compose-Buddy-CI-Example)
+
+- ecsTaskExecutionRole 생성
+- arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy 에 Attach
+
+```shell script
+# 클러스터 생성
+ecs-cli configure --cluster <Cluster 이름> --default-launch-type EC2 --region ap-northeast-2
+```
+
+### ECS IAM 사용자 추가
+
+- IAMFullAccess
+- AmazonECS_FullAccess
+- AmazonSSMFullAccess
+
+### 배포 환경 설정
+
+#### 1. ecs-params.yml
+
+[Parameter Store 설정방법](https://medium.com/@felipgomesilva/using-secrets-in-aws-ecs-dc43c37ce4a1)
+
+### 배포 명령어
+
+```shell script
+# 배포!
+ecs-cli compose --file docker-compose.yml --file docker-compose.prod.yml --project-name <Task 이름> up
+```
+
+
+# TODO
+
+- [ ] 배포 최종 목적지에 도달했다. 블로그 포스팅하자
