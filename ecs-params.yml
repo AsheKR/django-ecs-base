@@ -4,3 +4,10 @@ task_definition:
   task_size:
     mem_limit: 0.5GB
     cpu_limit: 256
+  services:
+    web:
+      secrets:
+        - value_from: SECRETS_MANAGER_ACCESS_KEY
+          name: AWS_ACCESS_KEY_ID
+        - value_from: SECRETS_MANAGER_SECRET_KEY
+          name: AWS_SECRET_ACCESS_KEY
