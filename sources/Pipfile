@@ -5,7 +5,6 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
-pytest-sugar = "*"
 tox = "*"
 flake8 = "*"
 coverage = "*"
@@ -19,13 +18,12 @@ pytest-cov = "*"
 ipython = "*"
 pytest-pythonpath = "*"
 isort = "*"
+pytest-sugar = "*"
 
 [packages]
 django = "*"
 argon2-cffi = "*"
 sentry-sdk = "==0.7.9"
-django-anymail = "*"
-pytest-sugar = "*"
 boto3 = "*"
 django-secrets-manager = "*"
 django-storages = "*"
