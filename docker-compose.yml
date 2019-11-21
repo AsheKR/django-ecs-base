@@ -2,15 +2,13 @@ version: '3'
 services:
   nginx:
     container_name: nginx
-    image: nginx:latest
+    image: <DOCKER_NGINX_BUILD_IMAGE>
     ports:
       - 80:80
     depends_on:
       - web  # 해당 컨테이너가 실행되기 위해 먼저 실행되어야하는 컨테이너를 지정
     links:
         - web  # links로 연결해주면 web:8000 으로 접근시 web 컨테이너의 8000번 포트로 접근할 수 있다.
-    volumes:
-      - ./nginx/sites_enabled/nginx.conf:/etc/nginx/conf.d/default.conf
   web:
     container_name: web
     image: <DOCKER_BUILD_IMAGE>
@@ -23,3 +21,4 @@ services:
       - $HOME/.aws/credentials:/root/.aws/credentials
     environment:
       - DJANGO_SETTINGS_MODULE=config.settings.production
+      - AWS_REGION_NAME=ap-northeast-2
