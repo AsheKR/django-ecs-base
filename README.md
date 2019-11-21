@@ -120,6 +120,12 @@ AWS_SECRETS_MANAGER_PROFILE = "<SECRET_MANAGER_CREDENTIALS_PROFILE>"
 # ENVIRON
 # ------------------------------------------------------------------------------
 # https://github.com/LeeHanYeong/django-aws-secrets-manager
+AWS_SECRETS_MANAGER_SECRETS_SECTION = "<SECRETS_DEV_SECTION>"
+```
+
+- Sample
+
+```python
 AWS_SECRETS_MANAGER_SECRETS_SECTION = "django-base:dev"
 ```
 
@@ -132,6 +138,12 @@ AWS_SECRETS_MANAGER_SECRETS_SECTION = "django-base:dev"
 # ENVIRON
 # ------------------------------------------------------------------------------
 # https://github.com/LeeHanYeong/django-aws-secrets-manager
+AWS_SECRETS_MANAGER_SECRETS_SECTION = "<SECRETS_PRODUCTION_SECTION>"
+```
+
+- Sample
+
+```python
 AWS_SECRETS_MANAGER_SECRETS_SECTION = "django-base:production"
 ```
 
