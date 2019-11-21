@@ -1,0 +1,16 @@
+version: '3'
+services:
+  nginx:
+    logging:
+      driver: awslogs  # 로컬에서는 안되는 awslogs 설정이지만 CloudWatch에서 로그를 상세하기 찍어보기위한 설정이다.
+      options:
+        awslogs-group: crud
+        awslogs-region: ap-northeast-2
+        awslogs-stream-prefix: web-nginx
+  web:
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: crud
+        awslogs-region: ap-northeast-2
+        awslogs-stream-prefix: was
