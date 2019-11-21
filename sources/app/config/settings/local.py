@@ -5,7 +5,7 @@ from .base import *  # noqa
 # ENVIRON
 # ------------------------------------------------------------------------------
 # https://github.com/LeeHanYeong/django-aws-secrets-manager
-AWS_SECRETS_MANAGER_SECRETS_SECTION = 'django-base:dev'
+AWS_SECRETS_MANAGER_SECRETS_SECTION = "django-base:dev"
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -42,7 +42,9 @@ AUTHENTICATION_BACKENDS = [
 # EMAIL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-EMAIL_BACKEND = SECRETS.get("DJANGO_EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend")
+EMAIL_BACKEND = SECRETS.get(
+    "DJANGO_EMAIL_BACKEND", "django.core.mail.backends.smtp.EmailBackend"
+)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-host
 EMAIL_HOST = "localhost"
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-port

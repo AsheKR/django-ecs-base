@@ -2,19 +2,18 @@ import logging
 
 import sentry_sdk
 from django_secrets import SECRETS
-
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import LoggingIntegration
 
-# from sentry_sdk.integrations.celery import CeleryIntegration
-
 from .base import *  # noqa
+
+# from sentry_sdk.integrations.celery import CeleryIntegration
 
 
 # ENVIRON
 # ------------------------------------------------------------------------------
 # https://github.com/LeeHanYeong/django-aws-secrets-manager
-AWS_SECRETS_MANAGER_SECRETS_SECTION = 'django-base:production'
+AWS_SECRETS_MANAGER_SECRETS_SECTION = "django-base:production"
 
 
 # GENERAL
@@ -29,8 +28,8 @@ ALLOWED_HOSTS = SECRETS["ALLOWED_HOSTS"]
 # ------------------------------------------------------------------------------
 DATABASES = dict()
 DATABASES["default"] = dict()
-DATABASES["default"]['ENGINE'] = SECRETS["DATABASE_ENGINE"]  # noqa
-DATABASES["default"]['HOST'] = SECRETS["DATABASE_URL"]  # noqa
+DATABASES["default"]["ENGINE"] = SECRETS["DATABASE_ENGINE"]  # noqa
+DATABASES["default"]["HOST"] = SECRETS["DATABASE_URL"]  # noqa
 DATABASES["default"]["NAME"] = SECRETS["DATABASE_NAME"]  # noqa
 DATABASES["default"]["USER"] = SECRETS["DATABASE_USER"]  # noqa
 DATABASES["default"]["PASSWORD"] = SECRETS["DATABASE_PASSWORD"]  # noqa
@@ -82,7 +81,7 @@ STATIC_URL = "/static/"
 # ------------------------------------------------------------------------------
 # region http://stackoverflow.com/questions/10390244/
 # Full-fledge class: https://stackoverflow.com/a/18046120/104731
-from storages.backends.s3boto3 import S3Boto3Storage  # noqa
+from storages.backends.s3boto3 import S3Boto3Storage  # noqa isort:skip
 
 
 class StaticRootS3Boto3Storage(S3Boto3Storage):
