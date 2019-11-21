@@ -14,8 +14,8 @@ APP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # ENVIRON
 # ------------------------------------------------------------------------------
 # https://github.com/LeeHanYeong/django-aws-secrets-manager
-AWS_SECRETS_MANAGER_SECRETS_NAME = "django-base"
-AWS_SECRETS_MANAGER_PROFILE = "django-base-secret-manager"
+AWS_SECRETS_MANAGER_SECRETS_NAME = "<SECRET_MANAGER_NAME>"
+AWS_SECRETS_MANAGER_PROFILE = "<SECRET_MANAGER_CREDENTIALS_PROFILE>"
 AWS_SECRETS_MANAGER_REGION_NAME = "ap-northeast-2"
 
 # GENERAL

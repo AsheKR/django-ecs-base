@@ -5,7 +5,7 @@ from .base import *  # noqa
 # ENVIRON
 # ------------------------------------------------------------------------------
 # https://github.com/LeeHanYeong/django-aws-secrets-manager
-AWS_SECRETS_MANAGER_SECRETS_SECTION = "django-base:dev"
+AWS_SECRETS_MANAGER_SECRETS_SECTION = "<SECRETS_SECTION>"
 
 # GENERAL
 # ------------------------------------------------------------------------------
